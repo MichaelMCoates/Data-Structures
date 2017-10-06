@@ -1,0 +1,3 @@
+class RingBuffer
+
+end

@@ -1,0 +1,3 @@
+class StaticArray
+
+end
