@@ -1,6 +1,6 @@
 class StaticArray
   def initialize(length)
-    @store = Array.new(length)
+    self.store = Array.new(length)
   end
 
   def [](index)
