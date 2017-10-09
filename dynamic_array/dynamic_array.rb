@@ -20,6 +20,8 @@ class DynamicArray
   end
 
   def push(value)
+    self.resize if self.length == self.capacity
+
     self.length += 1
     self[length - 1] = value
   end
@@ -30,6 +32,8 @@ class DynamicArray
   end
 
   def unshift(value)
+    self.resize if self.length == self.capacity
+
     self.length += 1
 
     (self.length - 1).downto(1).each { |idx| self[idx] = self[idx - 1] }
@@ -54,6 +58,18 @@ class DynamicArray
     unless index >= 0 && index < length
       raise "index out of bounds"
     end
+  end
+
+  def resize
+    new_capacity = self.capacity * 2
+    new_store = StaticArray.new(new_capacity)
+
+    self.length.times do |idx|
+      new_store[idx] = self[idx]
+    end
+
+    self.capacity = new_capacity
+    self.store = new_store
   end
 
 
