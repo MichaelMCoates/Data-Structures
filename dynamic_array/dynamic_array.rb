@@ -19,6 +19,16 @@ class DynamicArray
     self.static_array[index] = value
   end
 
+  def push(value)
+    self.length += 1
+    self[length - 1] = value
+  end
+
+  def pop
+    self[length - 1] = nil
+    self.length -= 1
+  end
+
 
 
   protected
@@ -30,7 +40,6 @@ class DynamicArray
       raise "index out of bounds"
     end
   end
-
 
 
 end
