@@ -9,4 +9,10 @@ class DynamicArray
     self.capacity = 4
   end
 
+
+  protected
+  attr_writer :static_array, :length, :capacity
+
+
+
 end
