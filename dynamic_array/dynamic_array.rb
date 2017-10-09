@@ -10,10 +10,12 @@ class DynamicArray
   end
 
   def [](index)
+    check_index(index)
     self.static_array[index]
   end
 
   def []=(index, value)
+    check_index(index)
     self.static_array[index] = value
   end
 
@@ -22,6 +24,12 @@ class DynamicArray
   protected
   attr_accessor :static_array, :capacity
   attr_writer :length
+
+  def check_index(index)
+    unless index >= 0 && index < length
+      raise "index out of bounds"
+    end
+  end
 
 
 
