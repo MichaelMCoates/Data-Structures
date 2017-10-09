@@ -4,11 +4,11 @@ class StaticArray
   end
 
   def [](index)
-    @store[index]
+    self.store[index]
   end
 
   def []=(index, value)
-    @store[index] = value
+    self.store[index] = value
   end
 
   protected
