@@ -48,8 +48,6 @@ class DynamicArray
     shifted_el
   end
 
-
-
   protected
   attr_accessor :store, :capacity
   attr_writer :length
@@ -71,6 +69,4 @@ class DynamicArray
     self.capacity = new_capacity
     self.store = new_store
   end
-
-
 end
