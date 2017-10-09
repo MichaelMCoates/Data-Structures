@@ -29,6 +29,21 @@ class DynamicArray
     self.length -= 1
   end
 
+  def unshift(value)
+    self.length += 1
+
+    (self.length - 1).downto(1).each { |idx| self[idx] = self[idx - 1] }
+    self[0] = value
+  end
+
+  def shift
+    shifted_el = self[0]
+    (1..self.length - 1).each { |idx| self[idx - 1] = self[idx] }
+    self.length -= 1
+
+    shifted_el
+  end
+
 
 
   protected
