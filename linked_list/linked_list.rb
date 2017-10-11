@@ -32,19 +32,16 @@ class LinkedList
 
   def [](i)
     each_with_index { |link, j| return link if i == j }
-
     nil
   end
 
   def first
     return nil if self.empty?
-
     @head.next
   end
 
   def last
     return nil if self.empty?
-
     @tail.prev
   end
 
@@ -100,7 +97,6 @@ class LinkedList
 
     until current_link == @tail
       yield current_link
-
       current_link = current_link.next
     end
   end
@@ -109,8 +105,3 @@ class LinkedList
     inject([]) { |acc, link| acc << "[#{link.key}, #{link.val}]" }.join(", ")
   end
 end
-
-a = LinkedList.new
-a.append(1, 2)
-a.append(2, 3)
-a.remove(1)

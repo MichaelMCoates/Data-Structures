@@ -46,6 +46,7 @@ class HashSet
     old_store.each do |bucket|
       bucket.each do |el|
         self.insert(el)
+      end
     end
   end
 end

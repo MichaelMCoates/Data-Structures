@@ -3,6 +3,7 @@ require_relative '../linked_list/linked_list'
 
 class HashMap
   include Enumerable
+
   attr_reader :count
 
   def initialize(num_of_buckets = 8)
@@ -53,7 +54,7 @@ class HashMap
 
   private
 
-  def num_buckets
+  def num_of_buckets
     @store.length
   end
 

@@ -3,6 +3,7 @@ require_relative '../linked_list/linked_list'
 
 class LRUCache
   attr_reader :count
+  
   def initialize(max_items, prc)
     @map = HashMap.new
     @store = LinkedList.new
