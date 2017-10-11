@@ -12,7 +12,7 @@ class HashSet
     return false if self.include?(num)
 
     @count += 1
-    self.resize! if @count < num_of_buckets
+    resize! if @count < num_of_buckets
 
     self[num] << num
     num

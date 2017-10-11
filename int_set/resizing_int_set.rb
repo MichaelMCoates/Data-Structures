@@ -10,7 +10,7 @@ class ResizingIntSet
     return false if self.include?(num)
 
     @count += 1
-    self.resize! if @count < num_of_buckets
+    resize! if num_of_buckets < @count
 
     self[num] << num
     num
@@ -44,6 +44,7 @@ class ResizingIntSet
     old_store.each do |bucket|
       bucket.each do |el|
         self.insert(el)
+      end
     end
   end
 end

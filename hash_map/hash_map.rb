@@ -12,26 +12,26 @@ class HashMap
   end
 
   def include?(key)
-    self.bucket(key).include?(key)
+    bucket(key).include?(key)
   end
 
   def set(key, val)
     if self.include?(key)
-      self.bucket(key).update(key, val)
+      bucket(key).update(key, val)
     else
       @count += 1
-      self.resize! if @count < num_of_buckets
+      resize! if @count < num_of_buckets
 
-      self.bucket(key).append(key, val)
+      bucket(key).append(key, val)
     end
   end
 
   def get(key)
-    self.bucket(key).get(key)
+    bucket(key).get(key)
   end
 
   def delete(key)
-    self.bucket(key).remove(key)
+    bucket(key).remove(key)
   end
 
   def each
