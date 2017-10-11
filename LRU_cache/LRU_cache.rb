@@ -18,7 +18,7 @@ class LRUCache
     if @map.include?(key)
       link = @map[key]
       update_link!(link)
-      return link.val
+      link.val
     else
       add_link!(key)
     end
