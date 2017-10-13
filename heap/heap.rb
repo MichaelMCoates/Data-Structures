@@ -34,7 +34,7 @@ class Heap
   end
 
   def self.parent_index(child_index)
-    return nil if child_index == 0
+    raise "root has no parent" if child_index == 0
     (child_index - 1) / 2
   end
 
@@ -65,5 +65,16 @@ class Heap
   end
 
   def self.heapify_up(array, child_idx, len = array.length, &prc)
+    prc ||= Proc.new { |el1, el2| el1 <=> el2 }
+
+    return array if child_idx == 0
+
+    parent_idx = self.parent_index(child_idx)
+    parent = array[parent_idx]
+    child = array[child_idx]
+    if prc.call(parent, child) >= 0
+      array[parent_idx], array[child_idx] = array[child_idx], array[parent_idx]
+      self.heapify_up(array, parent_idx, len, &prc)
+    end
   end
 end
