@@ -42,7 +42,7 @@ class Heap
     prc ||= Proc.new { |el1, el2| el1 <=> el2 }
 
     child_indices = self.child_indices(len, parent_idx)
-    return if child_indices == nil
+    return array if child_indices == nil
 
     children = child_indices.map { |child_idx| array[child_idx] }
     smallest_child = nil
@@ -52,13 +52,13 @@ class Heap
       smallest_child = children[0]
       smallest_child_idx = child_indices[0]
     else
-      smallest_child = prc.call(children[0], children[1]) ? children[1] : children[0]
-      smallest_child_idx = prc.call(children[0], children[1]) ? child_indices[1] : child_indices[0]
+      smallest_child = prc.call(children[0], children[1]) == -1 ? children[0] : children[1]
+      smallest_child_idx = prc.call(children[0], children[1]) == -1 ? child_indices[0] : child_indices[1]
     end
 
     parent = array[parent_idx]
 
-    if parent > smallest_child
+    if prc.call(parent, smallest_child) >= 0
       array[parent_idx], array[smallest_child_idx] = array[smallest_child_idx], array[parent_idx]
       heapify_down(array, smallest_child_idx, len, &prc)
     end
