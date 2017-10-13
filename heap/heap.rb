@@ -5,19 +5,40 @@ class Heap
   end
 
   def count
+    self.store.length
   end
 
   def extract
+    self[0], self[self.count - 1] = self[self.count - 1], self[0]
+    extracted = self.pop
+    Heap.heapify_down(self.store, 0)
+
+    extracted
   end
 
   def peek
+    self.store[0]
   end
 
   def push(val)
+    self.store.push(val)
+    Heap.heapify_up(self.store, self.count - 1)
   end
 
   protected
   attr_accessor :prc, :store
+
+  def [](idx)
+    self.store[idx]
+  end
+
+  def []=(idx, value)
+    self.store[idx] = value
+  end
+
+  def pop
+    self.store.pop
+  end
 
   public
   def self.child_indices(len, parent_index)
@@ -72,6 +93,7 @@ class Heap
     parent_idx = self.parent_index(child_idx)
     parent = array[parent_idx]
     child = array[child_idx]
+
     if prc.call(parent, child) >= 0
       array[parent_idx], array[child_idx] = array[child_idx], array[parent_idx]
       self.heapify_up(array, parent_idx, len, &prc)
