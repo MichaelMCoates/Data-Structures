@@ -22,7 +22,6 @@ class Array
     end
 
     (self.length).downto(2).each do |heap_bound|
-      p self
       self[heap_bound - 1], self[0] = self[0], self[heap_bound - 1]
       Heap.heapify_down(self, 0, heap_bound - 1)
     end
