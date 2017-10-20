@@ -56,7 +56,29 @@ class BinarySearchTree
     BinarySearchTree.max(node.right)
   end
 
+  def find(value)
+    BinarySearchTree.find!(@root, value)
+  end
 
+  def self.find!(node, value)
+    return nil unless node
+    return node if node.value == value
 
+    if value < node.value
+      return BinarySearchTree.find!(node.left, value)
+    end
+
+    BinarySearchTree.find!(node.right, value)
+  end
+
+  def height
+    BinarySearchTree.height!(@root)
+  end
+
+  def self.height!(node)
+    return -1 unless node
+
+    1 + [BinarySearchTree.height!(node.left), BinarySearchTree.height!(node.right)].max
+  end
 
 end
