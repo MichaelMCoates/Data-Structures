@@ -108,4 +108,48 @@ class BinarySearchTree
     node
   end
 
+  def inorder
+    BinarySearchTree.inorder!(@root)
+  end
+
+  def self.inorder!(node)
+    return [] unless node
+
+    arr = []
+    arr += BinarySearchTree.inorder!(node.left) if node.left
+    arr << node.value
+    arr += BinarySearchTree.inorder!(node.right) if node.right
+
+    arr
+  end
+
+  def preorder
+    BinarySearchTree.preorder!(@root)
+  end
+
+  def self.preorder!(node)
+    return [] unless node
+
+    arr = [node.value]
+    arr += BinarySearchTree.preorder!(node.left) if node.left
+    arr += BinarySearchTree.preorder!(node.right) if node.right
+
+    arr
+  end
+
+  def postorder
+    BinarySearchTree.postorder!(@root)
+  end
+
+  def self.postorder!(node)
+    return [] unless node
+
+    arr = []
+    arr += BinarySearchTree.postorder!(node.left) if node.left
+    arr += BinarySearchTree.postorder!(node.right) if node.right
+    arr << node.value
+
+    arr
+  end
+
 end
